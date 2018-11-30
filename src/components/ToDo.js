@@ -8,6 +8,10 @@ class ToDo extends Component {
     return (
         <div className='App'>
       <li> A todo will go here </li>
+      <li>
+         <input type="checkbox" checked={ this.props.isCompleted } />
+         <span>{ this.props.description }</span>
+       </li>
     </div>
     );
   }
