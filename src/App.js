@@ -12,7 +12,11 @@ class App extends Component {
         { description: 'Buy new dishes', isCompleted: false }
       ],
       newTodoDescription: ''
-    };
+   }
+  }
+  deleteToDo = (remove) => {
+    const todos = this.state.todos.filter( t => t.description !== remove);
+    this.setState({ todos})
   }
   handleChange(e) {
     this.setState({ newTodoDescription: e.target.value })
@@ -34,8 +38,10 @@ class App extends Component {
       <div className="App">
       <ul>
       { this.state.todos.map( (todo, index) => 
-          <ToDo key={ index } description={ todo.description } isCompleted={ todo.isCompleted } toggleComplete={ () => this.toggleComplete(index) } />
+          <ToDo key={ index } onDelete={this.deleteToDo} description={ todo.description } isCompleted={ todo.isCompleted } toggleComplete={ () => this.toggleComplete(index) } 
+          />
           )}
+          
         </ul>
         <form onSubmit={ (e) => this.handleSubmit(e) }>
         <input type="text" value={ this.state.newTodoDescription } onChange={ (e) => this.handleChange(e) } />
@@ -44,5 +50,5 @@ class App extends Component {
       </div>
     );
   }
-}
+  }
 export default App;
